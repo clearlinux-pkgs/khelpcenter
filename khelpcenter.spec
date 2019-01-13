@@ -6,17 +6,18 @@
 #
 Name     : khelpcenter
 Version  : 18.08.0
-Release  : 2
+Release  : 3
 URL      : https://download.kde.org/stable/applications/18.08.0/src/khelpcenter-18.08.0.tar.xz
 Source0  : https://download.kde.org/stable/applications/18.08.0/src/khelpcenter-18.08.0.tar.xz
 Source99 : https://download.kde.org/stable/applications/18.08.0/src/khelpcenter-18.08.0.tar.xz.sig
-Summary  : No detailed summary available
+Summary  : Application to show KDE Applications' documentation
 Group    : Development/Tools
 License  : GPL-2.0
-Requires: khelpcenter-bin
-Requires: khelpcenter-data
-Requires: khelpcenter-license
-Requires: khelpcenter-locales
+Requires: khelpcenter-bin = %{version}-%{release}
+Requires: khelpcenter-data = %{version}-%{release}
+Requires: khelpcenter-lib = %{version}-%{release}
+Requires: khelpcenter-license = %{version}-%{release}
+Requires: khelpcenter-locales = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : grantlee-dev
@@ -32,8 +33,8 @@ KHelpCenter documentation meta data structure
 %package bin
 Summary: bin components for the khelpcenter package.
 Group: Binaries
-Requires: khelpcenter-data
-Requires: khelpcenter-license
+Requires: khelpcenter-data = %{version}-%{release}
+Requires: khelpcenter-license = %{version}-%{release}
 
 %description bin
 bin components for the khelpcenter package.
@@ -47,23 +48,22 @@ Group: Data
 data components for the khelpcenter package.
 
 
-%package dev
-Summary: dev components for the khelpcenter package.
-Group: Development
-Requires: khelpcenter-bin
-Requires: khelpcenter-data
-Provides: khelpcenter-devel
-
-%description dev
-dev components for the khelpcenter package.
-
-
 %package doc
 Summary: doc components for the khelpcenter package.
 Group: Documentation
 
 %description doc
 doc components for the khelpcenter package.
+
+
+%package lib
+Summary: lib components for the khelpcenter package.
+Group: Libraries
+Requires: khelpcenter-data = %{version}-%{release}
+Requires: khelpcenter-license = %{version}-%{release}
+
+%description lib
+lib components for the khelpcenter package.
 
 
 %package license
@@ -90,18 +90,18 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1535429049
-mkdir clr-build
+export SOURCE_DATE_EPOCH=1547422438
+mkdir -p clr-build
 pushd clr-build
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1535429049
+export SOURCE_DATE_EPOCH=1547422438
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/khelpcenter
-cp COPYING %{buildroot}/usr/share/doc/khelpcenter/COPYING
+mkdir -p %{buildroot}/usr/share/package-licenses/khelpcenter
+cp COPYING %{buildroot}/usr/share/package-licenses/khelpcenter/COPYING
 pushd clr-build
 %make_install
 popd
@@ -155,10 +155,6 @@ popd
 /usr/share/kxmlgui5/khelpcenter/khelpcenterui.rc
 /usr/share/metainfo/org.kde.Help.appdata.xml
 /usr/share/xdg/khelpcenter.categories
-
-%files dev
-%defattr(-,root,root,-)
-/usr/lib64/libkdeinit5_khelpcenter.so
 
 %files doc
 %defattr(0644,root,root,0755)
@@ -510,9 +506,13 @@ popd
 /usr/share/doc/HTML/uk/onlinehelp/index.cache.bz2
 /usr/share/doc/HTML/uk/onlinehelp/index.docbook
 
-%files license
+%files lib
 %defattr(-,root,root,-)
-/usr/share/doc/khelpcenter/COPYING
+/usr/lib64/libkdeinit5_khelpcenter.so
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/khelpcenter/COPYING
 
 %files locales -f khelpcenter5.lang
 %defattr(-,root,root,-)
