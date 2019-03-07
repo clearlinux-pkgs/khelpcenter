@@ -5,12 +5,12 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : khelpcenter
-Version  : 18.12.2
-Release  : 4
-URL      : https://download.kde.org/stable/applications/18.12.2/src/khelpcenter-18.12.2.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.12.2/src/khelpcenter-18.12.2.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.12.2/src/khelpcenter-18.12.2.tar.xz.sig
-Summary  : Application to show KDE Applications' documentation
+Version  : 18.12.3
+Release  : 5
+URL      : https://download.kde.org/stable/applications/18.12.3/src/khelpcenter-18.12.3.tar.xz
+Source0  : https://download.kde.org/stable/applications/18.12.3/src/khelpcenter-18.12.3.tar.xz
+Source99 : https://download.kde.org/stable/applications/18.12.3/src/khelpcenter-18.12.3.tar.xz.sig
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
 Requires: khelpcenter-bin = %{version}-%{release}
@@ -83,22 +83,23 @@ locales components for the khelpcenter package.
 
 
 %prep
-%setup -q -n khelpcenter-18.12.2
+%setup -q -n khelpcenter-18.12.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1549904481
+export SOURCE_DATE_EPOCH=1551998712
 mkdir -p clr-build
 pushd clr-build
+export LDFLAGS="${LDFLAGS} -fno-lto"
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1549904481
+export SOURCE_DATE_EPOCH=1551998712
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/khelpcenter
 cp COPYING %{buildroot}/usr/share/package-licenses/khelpcenter/COPYING
