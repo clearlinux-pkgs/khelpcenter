@@ -6,11 +6,11 @@
 #
 Name     : khelpcenter
 Version  : 18.12.3
-Release  : 5
+Release  : 6
 URL      : https://download.kde.org/stable/applications/18.12.3/src/khelpcenter-18.12.3.tar.xz
 Source0  : https://download.kde.org/stable/applications/18.12.3/src/khelpcenter-18.12.3.tar.xz
 Source99 : https://download.kde.org/stable/applications/18.12.3/src/khelpcenter-18.12.3.tar.xz.sig
-Summary  : No detailed summary available
+Summary  : Application to show KDE Applications' documentation
 Group    : Development/Tools
 License  : GPL-2.0
 Requires: khelpcenter-bin = %{version}-%{release}
@@ -90,16 +90,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1551998712
+export SOURCE_DATE_EPOCH=1555331905
 mkdir -p clr-build
 pushd clr-build
-export LDFLAGS="${LDFLAGS} -fno-lto"
 %cmake ..
-make  %{?_smp_mflags} VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1551998712
+export SOURCE_DATE_EPOCH=1555331905
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/khelpcenter
 cp COPYING %{buildroot}/usr/share/package-licenses/khelpcenter/COPYING
