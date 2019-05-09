@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : khelpcenter
-Version  : 19.04.0
-Release  : 8
-URL      : https://download.kde.org/stable/applications/19.04.0/src/khelpcenter-19.04.0.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.04.0/src/khelpcenter-19.04.0.tar.xz
-Source99 : https://download.kde.org/stable/applications/19.04.0/src/khelpcenter-19.04.0.tar.xz.sig
+Version  : 19.04.1
+Release  : 9
+URL      : https://download.kde.org/stable/applications/19.04.1/src/khelpcenter-19.04.1.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.04.1/src/khelpcenter-19.04.1.tar.xz
+Source99 : https://download.kde.org/stable/applications/19.04.1/src/khelpcenter-19.04.1.tar.xz.sig
 Summary  : Application to show KDE Applications' documentation
 Group    : Development/Tools
 License  : GPL-2.0
@@ -83,14 +83,14 @@ locales components for the khelpcenter package.
 
 
 %prep
-%setup -q -n khelpcenter-19.04.0
+%setup -q -n khelpcenter-19.04.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1557013961
+export SOURCE_DATE_EPOCH=1557443237
 mkdir -p clr-build
 pushd clr-build
 export AR=gcc-ar
@@ -105,7 +105,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1557013961
+export SOURCE_DATE_EPOCH=1557443237
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/khelpcenter
 cp COPYING %{buildroot}/usr/share/package-licenses/khelpcenter/COPYING
@@ -318,6 +318,10 @@ popd
 /usr/share/doc/HTML/es/khelpcenter/glossary/index.cache.bz2
 /usr/share/doc/HTML/es/khelpcenter/glossary/index.docbook
 /usr/share/doc/HTML/es/khelpcenter/glossary/kdeprintingglossary.docbook
+/usr/share/doc/HTML/es/khelpcenter/index.cache.bz2
+/usr/share/doc/HTML/es/khelpcenter/index.docbook
+/usr/share/doc/HTML/es/onlinehelp/index.cache.bz2
+/usr/share/doc/HTML/es/onlinehelp/index.docbook
 /usr/share/doc/HTML/it/fundamentals/config.docbook
 /usr/share/doc/HTML/it/fundamentals/index.cache.bz2
 /usr/share/doc/HTML/it/fundamentals/index.docbook
