@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : khelpcenter
-Version  : 19.08.1
-Release  : 13
-URL      : https://download.kde.org/stable/applications/19.08.1/src/khelpcenter-19.08.1.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.08.1/src/khelpcenter-19.08.1.tar.xz
-Source1 : https://download.kde.org/stable/applications/19.08.1/src/khelpcenter-19.08.1.tar.xz.sig
+Version  : 19.08.2
+Release  : 14
+URL      : https://download.kde.org/stable/applications/19.08.2/src/khelpcenter-19.08.2.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.08.2/src/khelpcenter-19.08.2.tar.xz
+Source1 : https://download.kde.org/stable/applications/19.08.2/src/khelpcenter-19.08.2.tar.xz.sig
 Summary  : Application to show KDE Applications' documentation
 Group    : Development/Tools
 License  : GPL-2.0
@@ -83,14 +83,14 @@ locales components for the khelpcenter package.
 
 
 %prep
-%setup -q -n khelpcenter-19.08.1
+%setup -q -n khelpcenter-19.08.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1567701838
+export SOURCE_DATE_EPOCH=1570744178
 mkdir -p clr-build
 pushd clr-build
 # -Werror is for werrorists
@@ -103,11 +103,11 @@ export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
-make  %{?_smp_mflags} VERBOSE=1
+make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1567701838
+export SOURCE_DATE_EPOCH=1570744178
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/khelpcenter
 cp COPYING %{buildroot}/usr/share/package-licenses/khelpcenter/COPYING
