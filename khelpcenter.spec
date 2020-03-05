@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : khelpcenter
-Version  : 19.12.2
-Release  : 18
-URL      : https://download.kde.org/stable/release-service/19.12.2/src/khelpcenter-19.12.2.tar.xz
-Source0  : https://download.kde.org/stable/release-service/19.12.2/src/khelpcenter-19.12.2.tar.xz
-Source1  : https://download.kde.org/stable/release-service/19.12.2/src/khelpcenter-19.12.2.tar.xz.sig
+Version  : 19.12.3
+Release  : 19
+URL      : https://download.kde.org/stable/release-service/19.12.3/src/khelpcenter-19.12.3.tar.xz
+Source0  : https://download.kde.org/stable/release-service/19.12.3/src/khelpcenter-19.12.3.tar.xz
+Source1  : https://download.kde.org/stable/release-service/19.12.3/src/khelpcenter-19.12.3.tar.xz.sig
 Summary  : Application to show KDE Applications' documentation
 Group    : Development/Tools
 License  : GPL-2.0
@@ -83,15 +83,15 @@ locales components for the khelpcenter package.
 
 
 %prep
-%setup -q -n khelpcenter-19.12.2
-cd %{_builddir}/khelpcenter-19.12.2
+%setup -q -n khelpcenter-19.12.3
+cd %{_builddir}/khelpcenter-19.12.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1581022500
+export SOURCE_DATE_EPOCH=1583446168
 mkdir -p clr-build
 pushd clr-build
 # -Werror is for werrorists
@@ -108,10 +108,10 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1581022500
+export SOURCE_DATE_EPOCH=1583446168
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/khelpcenter
-cp %{_builddir}/khelpcenter-19.12.2/COPYING %{buildroot}/usr/share/package-licenses/khelpcenter/8cf4afb0636055f7cacd1b6955e0e8ebec7888f5
+cp %{_builddir}/khelpcenter-19.12.3/COPYING %{buildroot}/usr/share/package-licenses/khelpcenter/8cf4afb0636055f7cacd1b6955e0e8ebec7888f5
 pushd clr-build
 %make_install
 popd
