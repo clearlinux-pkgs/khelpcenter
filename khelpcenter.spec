@@ -5,12 +5,12 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : khelpcenter
-Version  : 20.04.0
-Release  : 20
-URL      : https://download.kde.org/stable/release-service/20.04.0/src/khelpcenter-20.04.0.tar.xz
-Source0  : https://download.kde.org/stable/release-service/20.04.0/src/khelpcenter-20.04.0.tar.xz
-Source1  : https://download.kde.org/stable/release-service/20.04.0/src/khelpcenter-20.04.0.tar.xz.sig
-Summary  : Application to show KDE Applications' documentation
+Version  : 20.04.1
+Release  : 21
+URL      : https://download.kde.org/stable/release-service/20.04.1/src/khelpcenter-20.04.1.tar.xz
+Source0  : https://download.kde.org/stable/release-service/20.04.1/src/khelpcenter-20.04.1.tar.xz
+Source1  : https://download.kde.org/stable/release-service/20.04.1/src/khelpcenter-20.04.1.tar.xz.sig
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
 Requires: khelpcenter-bin = %{version}-%{release}
@@ -20,6 +20,7 @@ Requires: khelpcenter-license = %{version}-%{release}
 Requires: khelpcenter-locales = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
+BuildRequires : extra-cmake-modules-data
 BuildRequires : grantlee-dev
 BuildRequires : khtml-dev
 BuildRequires : kjs-dev
@@ -83,35 +84,34 @@ locales components for the khelpcenter package.
 
 
 %prep
-%setup -q -n khelpcenter-20.04.0
-cd %{_builddir}/khelpcenter-20.04.0
+%setup -q -n khelpcenter-20.04.1
+cd %{_builddir}/khelpcenter-20.04.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1587684732
+export SOURCE_DATE_EPOCH=1589848093
 mkdir -p clr-build
 pushd clr-build
-# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
 make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1587684732
+export SOURCE_DATE_EPOCH=1589848093
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/khelpcenter
-cp %{_builddir}/khelpcenter-20.04.0/COPYING %{buildroot}/usr/share/package-licenses/khelpcenter/8cf4afb0636055f7cacd1b6955e0e8ebec7888f5
+cp %{_builddir}/khelpcenter-20.04.1/COPYING %{buildroot}/usr/share/package-licenses/khelpcenter/8cf4afb0636055f7cacd1b6955e0e8ebec7888f5
 pushd clr-build
 %make_install
 popd
