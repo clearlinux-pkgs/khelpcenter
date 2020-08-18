@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : khelpcenter
-Version  : 20.04.2
-Release  : 22
-URL      : https://download.kde.org/stable/release-service/20.04.2/src/khelpcenter-20.04.2.tar.xz
-Source0  : https://download.kde.org/stable/release-service/20.04.2/src/khelpcenter-20.04.2.tar.xz
-Source1  : https://download.kde.org/stable/release-service/20.04.2/src/khelpcenter-20.04.2.tar.xz.sig
+Version  : 20.08.0
+Release  : 23
+URL      : https://download.kde.org/stable/release-service/20.08.0/src/khelpcenter-20.08.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/20.08.0/src/khelpcenter-20.08.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/20.08.0/src/khelpcenter-20.08.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
@@ -84,15 +84,15 @@ locales components for the khelpcenter package.
 
 
 %prep
-%setup -q -n khelpcenter-20.04.2
-cd %{_builddir}/khelpcenter-20.04.2
+%setup -q -n khelpcenter-20.08.0
+cd %{_builddir}/khelpcenter-20.08.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1591902288
+export SOURCE_DATE_EPOCH=1597783461
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -104,14 +104,14 @@ export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
-make  %{?_smp_mflags}  VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1591902288
+export SOURCE_DATE_EPOCH=1597783461
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/khelpcenter
-cp %{_builddir}/khelpcenter-20.04.2/COPYING %{buildroot}/usr/share/package-licenses/khelpcenter/8cf4afb0636055f7cacd1b6955e0e8ebec7888f5
+cp %{_builddir}/khelpcenter-20.08.0/COPYING %{buildroot}/usr/share/package-licenses/khelpcenter/8cf4afb0636055f7cacd1b6955e0e8ebec7888f5
 pushd clr-build
 %make_install
 popd
@@ -191,37 +191,16 @@ popd
 /usr/share/doc/HTML/ca/fundamentals/ui.docbook
 /usr/share/doc/HTML/ca/fundamentals/visualdict-breadcrumb.png
 /usr/share/doc/HTML/ca/fundamentals/visualdict-button.png
-/usr/share/doc/HTML/ca/fundamentals/visualdict-central-widget.png
-/usr/share/doc/HTML/ca/fundamentals/visualdict-check-box.png
 /usr/share/doc/HTML/ca/fundamentals/visualdict-color-selector.png
 /usr/share/doc/HTML/ca/fundamentals/visualdict-combo-box.png
 /usr/share/doc/HTML/ca/fundamentals/visualdict-context-menu.png
 /usr/share/doc/HTML/ca/fundamentals/visualdict-dialog-box.png
 /usr/share/doc/HTML/ca/fundamentals/visualdict-drop-down-box.png
-/usr/share/doc/HTML/ca/fundamentals/visualdict-icon.png
-/usr/share/doc/HTML/ca/fundamentals/visualdict-list-box.png
-/usr/share/doc/HTML/ca/fundamentals/visualdict-panel.png
-/usr/share/doc/HTML/ca/fundamentals/visualdict-progress-bar.png
-/usr/share/doc/HTML/ca/fundamentals/visualdict-radio-button.png
-/usr/share/doc/HTML/ca/fundamentals/visualdict-scrollbar.png
-/usr/share/doc/HTML/ca/fundamentals/visualdict-slider.png
-/usr/share/doc/HTML/ca/fundamentals/visualdict-spin-box.png
-/usr/share/doc/HTML/ca/fundamentals/visualdict-text-area.png
-/usr/share/doc/HTML/ca/fundamentals/visualdict-text-box.png
-/usr/share/doc/HTML/ca/fundamentals/visualdict-toolbar.png
-/usr/share/doc/HTML/ca/khelpcenter/background.png
-/usr/share/doc/HTML/ca/khelpcenter/bgtable.png
 /usr/share/doc/HTML/ca/khelpcenter/glossary/index.cache.bz2
 /usr/share/doc/HTML/ca/khelpcenter/glossary/index.docbook
 /usr/share/doc/HTML/ca/khelpcenter/glossary/kdeprintingglossary.docbook
 /usr/share/doc/HTML/ca/khelpcenter/index.cache.bz2
 /usr/share/doc/HTML/ca/khelpcenter/index.docbook
-/usr/share/doc/HTML/ca/khelpcenter/kdelogo2.png
-/usr/share/doc/HTML/ca/khelpcenter/khelpcenter.png
-/usr/share/doc/HTML/ca/khelpcenter/lines.png
-/usr/share/doc/HTML/ca/khelpcenter/lines2.png
-/usr/share/doc/HTML/ca/khelpcenter/pointers.png
-/usr/share/doc/HTML/ca/khelpcenter/shadow1.png
 /usr/share/doc/HTML/ca/onlinehelp/index.cache.bz2
 /usr/share/doc/HTML/ca/onlinehelp/index.docbook
 /usr/share/doc/HTML/de/fundamentals/config.docbook
@@ -325,12 +304,36 @@ popd
 /usr/share/doc/HTML/es/khelpcenter/index.docbook
 /usr/share/doc/HTML/es/onlinehelp/index.cache.bz2
 /usr/share/doc/HTML/es/onlinehelp/index.docbook
+/usr/share/doc/HTML/it/fundamentals/colors.png
 /usr/share/doc/HTML/it/fundamentals/config.docbook
+/usr/share/doc/HTML/it/fundamentals/files-locationbar-context-menu.png
+/usr/share/doc/HTML/it/fundamentals/files-open.png
+/usr/share/doc/HTML/it/fundamentals/files-save.png
+/usr/share/doc/HTML/it/fundamentals/find-find-inline.png
+/usr/share/doc/HTML/it/fundamentals/find-find.png
+/usr/share/doc/HTML/it/fundamentals/find-found.png
+/usr/share/doc/HTML/it/fundamentals/find-replace-inline.png
+/usr/share/doc/HTML/it/fundamentals/find-replace.png
+/usr/share/doc/HTML/it/fundamentals/fonts.png
 /usr/share/doc/HTML/it/fundamentals/index.cache.bz2
 /usr/share/doc/HTML/it/fundamentals/index.docbook
 /usr/share/doc/HTML/it/fundamentals/install.docbook
+/usr/share/doc/HTML/it/fundamentals/menus.png
+/usr/share/doc/HTML/it/fundamentals/shortcuts-schemes.png
+/usr/share/doc/HTML/it/fundamentals/shortcuts-search.png
+/usr/share/doc/HTML/it/fundamentals/shortcuts-set.png
+/usr/share/doc/HTML/it/fundamentals/spellcheck-check.png
 /usr/share/doc/HTML/it/fundamentals/tasks.docbook
+/usr/share/doc/HTML/it/fundamentals/toolbars-configure.png
+/usr/share/doc/HTML/it/fundamentals/toolbars-toolbar.png
 /usr/share/doc/HTML/it/fundamentals/ui.docbook
+/usr/share/doc/HTML/it/fundamentals/visualdict-gui1.png
+/usr/share/doc/HTML/it/fundamentals/visualdict-gui2.png
+/usr/share/doc/HTML/it/fundamentals/visualdict-gui3.png
+/usr/share/doc/HTML/it/fundamentals/visualdict-gui4.png
+/usr/share/doc/HTML/it/fundamentals/visualdict-panel.png
+/usr/share/doc/HTML/it/fundamentals/visualdict-window.png
+/usr/share/doc/HTML/it/fundamentals/visualdict-window2.png
 /usr/share/doc/HTML/it/khelpcenter/glossary/index.cache.bz2
 /usr/share/doc/HTML/it/khelpcenter/glossary/index.docbook
 /usr/share/doc/HTML/it/khelpcenter/glossary/kdeprintingglossary.docbook
@@ -436,7 +439,6 @@ popd
 /usr/share/doc/HTML/ru/fundamentals/visualdict-breadcrumb.png
 /usr/share/doc/HTML/ru/fundamentals/visualdict-button.png
 /usr/share/doc/HTML/ru/fundamentals/visualdict-central-widget.png
-/usr/share/doc/HTML/ru/fundamentals/visualdict-check-box.png
 /usr/share/doc/HTML/ru/fundamentals/visualdict-color-selector.png
 /usr/share/doc/HTML/ru/fundamentals/visualdict-combo-box.png
 /usr/share/doc/HTML/ru/fundamentals/visualdict-context-menu.png
@@ -447,22 +449,15 @@ popd
 /usr/share/doc/HTML/ru/fundamentals/visualdict-gui3.png
 /usr/share/doc/HTML/ru/fundamentals/visualdict-icon-list.png
 /usr/share/doc/HTML/ru/fundamentals/visualdict-icon.png
-/usr/share/doc/HTML/ru/fundamentals/visualdict-list-box.png
 /usr/share/doc/HTML/ru/fundamentals/visualdict-menu-button.png
 /usr/share/doc/HTML/ru/fundamentals/visualdict-menu.png
 /usr/share/doc/HTML/ru/fundamentals/visualdict-menubar.png
 /usr/share/doc/HTML/ru/fundamentals/visualdict-panel.png
-/usr/share/doc/HTML/ru/fundamentals/visualdict-progress-bar.png
-/usr/share/doc/HTML/ru/fundamentals/visualdict-radio-button.png
-/usr/share/doc/HTML/ru/fundamentals/visualdict-scrollbar.png
-/usr/share/doc/HTML/ru/fundamentals/visualdict-slider.png
-/usr/share/doc/HTML/ru/fundamentals/visualdict-spin-box.png
 /usr/share/doc/HTML/ru/fundamentals/visualdict-statusbar.png
 /usr/share/doc/HTML/ru/fundamentals/visualdict-tab.png
 /usr/share/doc/HTML/ru/fundamentals/visualdict-text-area.png
 /usr/share/doc/HTML/ru/fundamentals/visualdict-text-box.png
 /usr/share/doc/HTML/ru/fundamentals/visualdict-titlebar.png
-/usr/share/doc/HTML/ru/fundamentals/visualdict-toolbar.png
 /usr/share/doc/HTML/ru/fundamentals/visualdict-tree-view.png
 /usr/share/doc/HTML/ru/fundamentals/visualdict-window.png
 /usr/share/doc/HTML/ru/fundamentals/visualdict-window2.png
