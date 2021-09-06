@@ -5,17 +5,16 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : khelpcenter
-Version  : 21.04.2
-Release  : 31
-URL      : https://download.kde.org/stable/release-service/21.04.2/src/khelpcenter-21.04.2.tar.xz
-Source0  : https://download.kde.org/stable/release-service/21.04.2/src/khelpcenter-21.04.2.tar.xz
-Source1  : https://download.kde.org/stable/release-service/21.04.2/src/khelpcenter-21.04.2.tar.xz.sig
+Version  : 21.08.1
+Release  : 32
+URL      : https://download.kde.org/stable/release-service/21.08.1/src/khelpcenter-21.08.1.tar.xz
+Source0  : https://download.kde.org/stable/release-service/21.08.1/src/khelpcenter-21.08.1.tar.xz
+Source1  : https://download.kde.org/stable/release-service/21.08.1/src/khelpcenter-21.08.1.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
-License  : GPL-2.0
+License  : GFDL-1.2 GPL-2.0 GPL-3.0
 Requires: khelpcenter-bin = %{version}-%{release}
 Requires: khelpcenter-data = %{version}-%{release}
-Requires: khelpcenter-lib = %{version}-%{release}
 Requires: khelpcenter-license = %{version}-%{release}
 Requires: khelpcenter-locales = %{version}-%{release}
 BuildRequires : buildreq-cmake
@@ -57,16 +56,6 @@ Group: Documentation
 doc components for the khelpcenter package.
 
 
-%package lib
-Summary: lib components for the khelpcenter package.
-Group: Libraries
-Requires: khelpcenter-data = %{version}-%{release}
-Requires: khelpcenter-license = %{version}-%{release}
-
-%description lib
-lib components for the khelpcenter package.
-
-
 %package license
 Summary: license components for the khelpcenter package.
 Group: Default
@@ -84,34 +73,37 @@ locales components for the khelpcenter package.
 
 
 %prep
-%setup -q -n khelpcenter-21.04.2
-cd %{_builddir}/khelpcenter-21.04.2
+%setup -q -n khelpcenter-21.08.1
+cd %{_builddir}/khelpcenter-21.08.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1623385060
+export SOURCE_DATE_EPOCH=1630961539
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1623385060
+export SOURCE_DATE_EPOCH=1630961539
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/khelpcenter
-cp %{_builddir}/khelpcenter-21.04.2/COPYING %{buildroot}/usr/share/package-licenses/khelpcenter/8cf4afb0636055f7cacd1b6955e0e8ebec7888f5
+cp %{_builddir}/khelpcenter-21.08.1/LICENSES/GFDL-1.2-or-later.txt %{buildroot}/usr/share/package-licenses/khelpcenter/7697008f58568e61e7598e796eafc2a997503fde
+cp %{_builddir}/khelpcenter-21.08.1/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/khelpcenter/3e8971c6c5f16674958913a94a36b1ea7a00ac46
+cp %{_builddir}/khelpcenter-21.08.1/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/khelpcenter/3e8971c6c5f16674958913a94a36b1ea7a00ac46
+cp %{_builddir}/khelpcenter-21.08.1/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/khelpcenter/2123756e0b1fc8243547235a33c0fcabfe3b9a51
 pushd clr-build
 %make_install
 popd
@@ -162,7 +154,6 @@ popd
 /usr/share/khelpcenter/templates/index.html
 /usr/share/khelpcenter/templates/search.html
 /usr/share/kservices5/khelpcenter.desktop
-/usr/share/kxmlgui5/khelpcenter/khelpcenterui.rc
 /usr/share/metainfo/org.kde.Help.appdata.xml
 /usr/share/qlogging-categories5/khelpcenter.categories
 
@@ -515,13 +506,11 @@ popd
 /usr/share/doc/HTML/uk/onlinehelp/index.cache.bz2
 /usr/share/doc/HTML/uk/onlinehelp/index.docbook
 
-%files lib
-%defattr(-,root,root,-)
-/usr/lib64/libkdeinit5_khelpcenter.so
-
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/khelpcenter/8cf4afb0636055f7cacd1b6955e0e8ebec7888f5
+/usr/share/package-licenses/khelpcenter/2123756e0b1fc8243547235a33c0fcabfe3b9a51
+/usr/share/package-licenses/khelpcenter/3e8971c6c5f16674958913a94a36b1ea7a00ac46
+/usr/share/package-licenses/khelpcenter/7697008f58568e61e7598e796eafc2a997503fde
 
 %files locales -f khelpcenter5.lang
 %defattr(-,root,root,-)
