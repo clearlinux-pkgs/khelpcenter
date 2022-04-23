@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : khelpcenter
-Version  : 21.12.3
-Release  : 39
-URL      : https://download.kde.org/stable/release-service/21.12.3/src/khelpcenter-21.12.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/21.12.3/src/khelpcenter-21.12.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/21.12.3/src/khelpcenter-21.12.3.tar.xz.sig
+Version  : 22.04.0
+Release  : 40
+URL      : https://download.kde.org/stable/release-service/22.04.0/src/khelpcenter-22.04.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/22.04.0/src/khelpcenter-22.04.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/22.04.0/src/khelpcenter-22.04.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0 GPL-3.0
@@ -73,15 +73,15 @@ locales components for the khelpcenter package.
 
 
 %prep
-%setup -q -n khelpcenter-21.12.3
-cd %{_builddir}/khelpcenter-21.12.3
+%setup -q -n khelpcenter-22.04.0
+cd %{_builddir}/khelpcenter-22.04.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1646547793
+export SOURCE_DATE_EPOCH=1650678381
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -97,13 +97,13 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1646547793
+export SOURCE_DATE_EPOCH=1650678381
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/khelpcenter
-cp %{_builddir}/khelpcenter-21.12.3/LICENSES/GFDL-1.2-or-later.txt %{buildroot}/usr/share/package-licenses/khelpcenter/7697008f58568e61e7598e796eafc2a997503fde
-cp %{_builddir}/khelpcenter-21.12.3/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/khelpcenter/3e8971c6c5f16674958913a94a36b1ea7a00ac46
-cp %{_builddir}/khelpcenter-21.12.3/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/khelpcenter/3e8971c6c5f16674958913a94a36b1ea7a00ac46
-cp %{_builddir}/khelpcenter-21.12.3/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/khelpcenter/2123756e0b1fc8243547235a33c0fcabfe3b9a51
+cp %{_builddir}/khelpcenter-22.04.0/LICENSES/GFDL-1.2-or-later.txt %{buildroot}/usr/share/package-licenses/khelpcenter/7697008f58568e61e7598e796eafc2a997503fde
+cp %{_builddir}/khelpcenter-22.04.0/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/khelpcenter/3e8971c6c5f16674958913a94a36b1ea7a00ac46
+cp %{_builddir}/khelpcenter-22.04.0/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/khelpcenter/3e8971c6c5f16674958913a94a36b1ea7a00ac46
+cp %{_builddir}/khelpcenter-22.04.0/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/khelpcenter/2123756e0b1fc8243547235a33c0fcabfe3b9a51
 pushd clr-build
 %make_install
 popd
@@ -121,8 +121,9 @@ popd
 
 %files data
 %defattr(-,root,root,-)
-/usr/share/applications/org.kde.Help.desktop
+/usr/share/applications/org.kde.khelpcenter.desktop
 /usr/share/config.kcfg/khelpcenter.kcfg
+/usr/share/dbus-1/services/org.kde.khelpcenter.service
 /usr/share/kde4/services/khelpcenter.desktop
 /usr/share/khelpcenter/glossary.xslt
 /usr/share/khelpcenter/plugins/Applications/.directory
@@ -154,7 +155,7 @@ popd
 /usr/share/khelpcenter/templates/index.html
 /usr/share/khelpcenter/templates/search.html
 /usr/share/kservices5/khelpcenter.desktop
-/usr/share/metainfo/org.kde.Help.appdata.xml
+/usr/share/metainfo/org.kde.khelpcenter.metainfo.xml
 /usr/share/qlogging-categories5/khelpcenter.categories
 
 %files doc
