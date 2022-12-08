@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : khelpcenter
-Version  : 22.08.3
-Release  : 47
-URL      : https://download.kde.org/stable/release-service/22.08.3/src/khelpcenter-22.08.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/22.08.3/src/khelpcenter-22.08.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/22.08.3/src/khelpcenter-22.08.3.tar.xz.sig
+Version  : 22.12.0
+Release  : 48
+URL      : https://download.kde.org/stable/release-service/22.12.0/src/khelpcenter-22.12.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/22.12.0/src/khelpcenter-22.12.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/22.12.0/src/khelpcenter-22.12.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0 GPL-3.0
@@ -73,15 +73,15 @@ locales components for the khelpcenter package.
 
 
 %prep
-%setup -q -n khelpcenter-22.08.3
-cd %{_builddir}/khelpcenter-22.08.3
+%setup -q -n khelpcenter-22.12.0
+cd %{_builddir}/khelpcenter-22.12.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1667887282
+export SOURCE_DATE_EPOCH=1670542463
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -97,7 +97,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1667887282
+export SOURCE_DATE_EPOCH=1670542463
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/khelpcenter
 cp %{_builddir}/khelpcenter-%{version}/LICENSES/GFDL-1.2-or-later.txt %{buildroot}/usr/share/package-licenses/khelpcenter/7697008f58568e61e7598e796eafc2a997503fde || :
@@ -137,16 +137,12 @@ popd
 /usr/share/khelpcenter/plugins/Manpages/man7.desktop
 /usr/share/khelpcenter/plugins/Manpages/man8.desktop
 /usr/share/khelpcenter/plugins/Scrollkeeper/.directory
-/usr/share/khelpcenter/plugins/browsercontrolmodules.desktop
-/usr/share/khelpcenter/plugins/filemanagercontrolmodules.desktop
 /usr/share/khelpcenter/plugins/fundamentals.desktop
 /usr/share/khelpcenter/plugins/info.desktop
 /usr/share/khelpcenter/plugins/kcontrolmodules.desktop
 /usr/share/khelpcenter/plugins/kicmodules.desktop
 /usr/share/khelpcenter/plugins/kioworkers.desktop
-/usr/share/khelpcenter/plugins/konquerorcontrolmodules.desktop
 /usr/share/khelpcenter/plugins/onlinehelp.desktop
-/usr/share/khelpcenter/plugins/othercontrolmodules.desktop
 /usr/share/khelpcenter/plugins/plasma.desktop
 /usr/share/khelpcenter/searchhandlers/man.desktop
 /usr/share/khelpcenter/searchhandlers/xapian.desktop
@@ -477,6 +473,10 @@ popd
 /usr/share/doc/HTML/sr/khelpcenter/index.docbook
 /usr/share/doc/HTML/sr/onlinehelp/index.cache.bz2
 /usr/share/doc/HTML/sr/onlinehelp/index.docbook
+/usr/share/doc/HTML/sr@latin/khelpcenter/index.cache.bz2
+/usr/share/doc/HTML/sr@latin/khelpcenter/index.docbook
+/usr/share/doc/HTML/sr@latin/onlinehelp/index.cache.bz2
+/usr/share/doc/HTML/sr@latin/onlinehelp/index.docbook
 /usr/share/doc/HTML/sv/fundamentals/config.docbook
 /usr/share/doc/HTML/sv/fundamentals/index.cache.bz2
 /usr/share/doc/HTML/sv/fundamentals/index.docbook
