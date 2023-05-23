@@ -6,11 +6,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : khelpcenter
-Version  : 23.04.0
-Release  : 53
-URL      : https://download.kde.org/stable/release-service/23.04.0/src/khelpcenter-23.04.0.tar.xz
-Source0  : https://download.kde.org/stable/release-service/23.04.0/src/khelpcenter-23.04.0.tar.xz
-Source1  : https://download.kde.org/stable/release-service/23.04.0/src/khelpcenter-23.04.0.tar.xz.sig
+Version  : 23.04.1
+Release  : 54
+URL      : https://download.kde.org/stable/release-service/23.04.1/src/khelpcenter-23.04.1.tar.xz
+Source0  : https://download.kde.org/stable/release-service/23.04.1/src/khelpcenter-23.04.1.tar.xz
+Source1  : https://download.kde.org/stable/release-service/23.04.1/src/khelpcenter-23.04.1.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0 GPL-3.0
@@ -77,50 +77,74 @@ locales components for the khelpcenter package.
 
 
 %prep
-%setup -q -n khelpcenter-23.04.0
-cd %{_builddir}/khelpcenter-23.04.0
+%setup -q -n khelpcenter-23.04.1
+cd %{_builddir}/khelpcenter-23.04.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1682097905
+export SOURCE_DATE_EPOCH=1684818011
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+%cmake ..
+make  %{?_smp_mflags}
+popd
+mkdir -p clr-build-avx2
+pushd clr-build-avx2
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export FCFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export FFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export CXXFLAGS="$CXXFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export CFLAGS="$CFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export CXXFLAGS="$CXXFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export FFLAGS="$FFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export FCFLAGS="$FCFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1682097905
+export SOURCE_DATE_EPOCH=1684818011
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/khelpcenter
 cp %{_builddir}/khelpcenter-%{version}/LICENSES/GFDL-1.2-or-later.txt %{buildroot}/usr/share/package-licenses/khelpcenter/7697008f58568e61e7598e796eafc2a997503fde || :
 cp %{_builddir}/khelpcenter-%{version}/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/khelpcenter/3e8971c6c5f16674958913a94a36b1ea7a00ac46 || :
 cp %{_builddir}/khelpcenter-%{version}/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/khelpcenter/3e8971c6c5f16674958913a94a36b1ea7a00ac46 || :
 cp %{_builddir}/khelpcenter-%{version}/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/khelpcenter/2123756e0b1fc8243547235a33c0fcabfe3b9a51 || :
+pushd clr-build-avx2
+%make_install_v3  || :
+popd
 pushd clr-build
 %make_install
 popd
 %find_lang khelpcenter5
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
+/V3/usr/lib64/libexec/khc_xapianindexer
+/V3/usr/lib64/libexec/khc_xapiansearch
 /usr/lib64/libexec/khc_mansearch.pl
 /usr/lib64/libexec/khc_xapianindexer
 /usr/lib64/libexec/khc_xapiansearch
 
 %files bin
 %defattr(-,root,root,-)
+/V3/usr/bin/khelpcenter
 /usr/bin/khelpcenter
 
 %files data
